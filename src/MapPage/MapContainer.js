@@ -8,7 +8,7 @@ class MapContainer extends Component {
     super(props);
     this.state = {
     fakeData: [
-      {"latitude": 34.0522,
+      {"latitude": 34.05070114135742,
       "longitude": -118.420,
        "day": 25,
       "week":100,
@@ -29,7 +29,7 @@ class MapContainer extends Component {
     isOpen: {},
     centerLat: this.props.centerLat,
     centerLng: this.props.centerLng,
-
+    houseData: this.props.houseData
   }
 }
   onToggleOpen = (id) => {
@@ -38,10 +38,29 @@ class MapContainer extends Component {
     });
   };
 
+/*
+  componentDidUpdate(prevProps){
+    // Typical usage (don't forget to compare props):
+    if (this.props.houseData !== prevProps.houseData) {
+      this.setState({
+        houseData:this.props.houseData
+      })
+    }
+  } */ 
+
+  componentWillReceiveProps(nextProps) {
+    // Any time props.email changes, update state.
+    if (nextProps.houseData !== this.props.houseData) {
+      this.setState({
+        houseData: nextProps.houseData
+      });
+    }
+  }
+
   render() {
 
     var heights = [];
-    var heightCoordinates = this.state.fakeData.map((house, index) => {
+    var heightCoordinates = this.state.houseData.map((house, index) => {
       heights[index]=house.day;
       return heights[index];
     })
@@ -56,7 +75,7 @@ class MapContainer extends Component {
     }
     
     var workingCoordinates = []
-    var newCoordinates = this.state.fakeData.map((house, index) => {
+    var newCoordinates = this.state.houseData.map((house, index) => {
       workingCoordinates[index] = {
       "height": house.day/max,
       "latitude": house.latitude,
@@ -67,14 +86,31 @@ class MapContainer extends Component {
         };
       return workingCoordinates[index];
     })
+/*
+    refreshHouseData = res => this.setState({ houseData: res.data.shoes })
+
+
+    componentWillReceiveProps(props) {
+      const { houseData, id } = this.props;
+      if (props.houseData !== houseData) {
+        this.fetchShoes(id)
+          .then(this.refreshShoeList)
+      }
+
+
+componentWillReceiveProps(props) {
+  this.setState({houseData: props.houseData})
+}
+*/
+
 
     const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
         defaultCenter = { { lat: this.state.centerLat, lng: this.state.centerLng } }
-        defaultZoom = { 18 }
+        defaultZoom = { 12 }
         defaultOptions={{
           disableDefaultUI: true, // disable default map UI
-          draggable: false, // make map draggable
+          draggable: true, // make map draggable
           keyboardShortcuts: false, // disable keyboard shortcuts
           scaleControl: false, // allow scale controle
           scrollwheel: false,
@@ -90,7 +126,7 @@ class MapContainer extends Component {
             >
             {this.state.isOpen[index] && <InfoWindow onCloseClick = {() =>this.onToggleOpen(index)}>
             <div>
-                {home.height}
+                {home.day}
             </div>
             </InfoWindow>}
             </Marker>;
@@ -101,6 +137,8 @@ class MapContainer extends Component {
       </GoogleMap>
 
    ));
+   console.log(this.state.houseData)
+   console.log(workingCoordinates)
 
     return (
     <div>
