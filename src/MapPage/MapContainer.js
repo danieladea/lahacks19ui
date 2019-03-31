@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {GoogleMap, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import Select from '@material-ui/core/Select';
-import './MapPage.css';
-
-
 
 class MapContainer extends Component {
   constructor(props) {
@@ -113,7 +110,7 @@ componentWillReceiveProps(props) {
         defaultZoom = { 12 }
         defaultOptions={{
           disableDefaultUI: true, // disable default map UI
-          draggable: false, // make map draggable
+          draggable: true, // make map draggable
           keyboardShortcuts: false, // disable keyboard shortcuts
           scaleControl: false, // allow scale controle
           scrollwheel: false,
