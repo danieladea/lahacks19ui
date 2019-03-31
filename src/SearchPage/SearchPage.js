@@ -111,7 +111,7 @@ class SearchPage extends React.Component {
                     <Link to="/map/123"><button id="submit">Search</button></Link>
                 </form>              
               </div>*/}
-              <h1>LeaderBoards</h1>
+              <h1>Leaderboards</h1>
               <div id="inputSpace">
                 <form type="text">
                     <label>
