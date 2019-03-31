@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import MapContainer from './MapContainer';
 import PropTypes from 'prop-types';
+import RankBoard from './RankBoard';
 
 const getURL = 'http://lahacks.appspot.com/api/fetchwater'
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -26,7 +27,11 @@ class MapPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            houseData: []
+            houseData: [ {"latitude": 34.0522,
+            "longitude": -118.420,
+             "day": 25,
+            "week":100,
+            "month":500} ]
         };
     }
     parseLat(path) {
@@ -63,12 +68,16 @@ class MapPage extends React.Component {
             throwError(response);
         }
         const data = await response.json();
-        console.log(data.results);
+        console.log(data);
         this.setState({ 
             houseData: data.results 
         });
 
     }
+/*
+    refreshHouseData = () => 
+    this.setState({refreshHouseData: !this.state.refreshHouseData})
+*/
     render() {
         const url = this.props.history.location;
         const myLat = parseFloat(this.parseLat(url.pathname));
@@ -76,10 +85,16 @@ class MapPage extends React.Component {
         console.log({myLat});
         console.log({myLng});
         return (
+            <div>
             <MapContainer
             centerLat = {myLat} 
             centerLng = {myLng}
+            houseData = {this.state.houseData}
             />
+                <div align="right">
+            {/*      <RankBoard/> */}
+                </div>
+            </div>
         );
     }
 }
