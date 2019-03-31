@@ -14,7 +14,12 @@ class BackToHome extends React.Component {
     render() {
         return (
             <div id="parent" className="Home">
-                <Link to='/'><p>Back To Home</p></Link>
+                <div id="wrap">
+                <Link to='/'><p>Home</p></Link>
+                </div>
+                <div id="title">
+                <p>Water Wars</p>
+                </div>
             </div>
         );
     }

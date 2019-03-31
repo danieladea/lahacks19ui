@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {GoogleMap, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
 import Select from '@material-ui/core/Select';
+import './MapPage.css';
 
 class MapContainer extends Component {
   constructor(props) {
