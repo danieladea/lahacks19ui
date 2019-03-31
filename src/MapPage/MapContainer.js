@@ -107,7 +107,7 @@ componentWillReceiveProps(props) {
     const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
         defaultCenter = { { lat: this.state.centerLat, lng: this.state.centerLng } }
-        defaultZoom = { 12 }
+        defaultZoom = { 18 }
         defaultOptions={{
           disableDefaultUI: true, // disable default map UI
           draggable: true, // make map draggable
@@ -142,9 +142,11 @@ componentWillReceiveProps(props) {
 
     return (
     <div>
-        <Select/>
         <GoogleMapExample
-          containerElement={ <div style={{ height: `700px`, width: '700px' }} /> }
+          containerElement={ <div style={{ height: `600px`, width: '1000px', padding: '15px 10px',
+          float: 'none',
+          margin: '0 auto',
+          }} /> }
           mapElement={ <div style={{ height: `100%` }} /> }
         >
 
