@@ -82,11 +82,13 @@ class RankBoard extends React.Component {
         console.log(rankedHouses);
         const displayHouses = this.closeRanks(rankedHouses);
         console.log(displayHouses);
-        const display = displayHouses.map(item => <li {...item}/>);
+        const display = rankedHouses.map(item => <li> {item.day} </li>);
         console.log(display);
         return (
             <div id="parent">
-               {display}
+                <ol>
+                    {display}
+                </ol>
             </div>
         );
     }

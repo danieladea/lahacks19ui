@@ -91,9 +91,6 @@ class MapPage extends React.Component {
             centerLng = {myLng}
             houseData = {this.state.houseData}
             />
-                <div align="right">
-            {/*      <RankBoard/> */}
-                </div>
             </div>
         );
     }
